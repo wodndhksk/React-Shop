@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { Row, Navbar, Container, Nav, Col } from 'react-bootstrap'
+import { useState } from 'react'
+import { data } from './data'
+import { Card } from './component/item'
 
 function App() {
+  let [shoes] = useState(data)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#cart">Cart</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <div className="main-bg"></div>
+      <Container>
+        <Row>
+          {shoes.map((a, i) => {
+            return <Card shoes={shoes[i]} i={i + 1} />
+          })}
+        </Row>
+      </Container>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
